@@ -10,3 +10,7 @@ License:
 Actions:
   - changed-files:
       - any-glob-to-any-file: .github/**
+
+Source code:
+  - changed-files:
+      - any-glob-to-any-file: src/**
