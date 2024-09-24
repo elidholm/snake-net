@@ -1,0 +1,12 @@
+---
+README:
+  - changed-files:
+      - any-glob-to-any-file: README.md
+
+License:
+  - changed-files:
+      - any-glob-to-any-file: LICENSE
+
+Actions:
+  - changed-files:
+      - any-glob-to-any-file: .github/**
