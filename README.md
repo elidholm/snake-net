@@ -1,6 +1,6 @@
 # Snake-Net
 <p align="center">
-    <a href="https://github.com/elidholm/snake-net/actions/workflows/code-analysis.yml"><img align="center" src="https://github.com/elidholm/snake-net/actions/workflows/code-analysis.yml/badge.svg" alt="github actions"></a>
+    <a href="https://github.com/elidholm/snake-net/actions/workflows/linting.yml"><img align="center" src="https://github.com/elidholm/snake-net/actions/workflows/linting.yml/badge.svg" alt="github actions"></a>
     <a href="https://github.com/zricethezav/gitleaks-action"><img align="center" src="https://img.shields.io/badge/protected%20by-gitleaks-blue" alt="gitleaks badge"></a>
     <a href="https://github.com/elidholm/snake-net/issues"><img align="center" src="https://img.shields.io/github/issues/elidholm/snake-net" alt="open issues"></a>
     <a href="https://github.com/elidholm/snake-net/commits/master"><img align="center" src="https://img.shields.io/github/commit-activity/m/elidholm/snake-net" alt="commit frequency"></a>
