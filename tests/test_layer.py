@@ -7,21 +7,18 @@ from snake_net.layer import LayerDense
 
 
 class TestLayerDense:
-    """Test LayerDense class."""
 
     @pytest.fixture(scope="function")
-    def first_layer(self) -> LayerDense:  # pylint: disable=missing-function-docstring
+    def first_layer(self) -> LayerDense:
         return LayerDense(4, 5)
 
     @pytest.fixture(scope="function")
-    def second_layer(self) -> LayerDense:  # pylint: disable=missing-function-docstring
+    def second_layer(self) -> LayerDense:
         return LayerDense(5, 2)
 
     @pytest.fixture(scope="function")
-    def inputs(self) -> np.ndarray:  # pylint: disable=missing-function-docstring
-        inputs = np.array(
-            [[1, 2, 3, 2.5], [2.0, 5.0, -1.0, 2.0], [-1.5, 2.7, 3.3, -0.8]]
-        )
+    def inputs(self) -> np.ndarray:
+        inputs = np.array([[1, 2, 3, 2.5], [2.0, 5.0, -1.0, 2.0], [-1.5, 2.7, 3.3, -0.8]])
         return inputs
 
     def test_one_layer_output_shape(self, first_layer: LayerDense, inputs: np.ndarray):
@@ -33,9 +30,7 @@ class TestLayerDense:
         expected = (3, 5)
         assert actual == expected
 
-    def test_two_layers_output_shape(
-        self, first_layer: LayerDense, second_layer: LayerDense, inputs: np.ndarray
-    ):
+    def test_two_layers_output_shape(self, first_layer: LayerDense, second_layer: LayerDense, inputs: np.ndarray):
         """Test two layers output shape"""
         np.random.seed(0)
 
@@ -60,9 +55,7 @@ class TestLayerDense:
         )
         assert np.allclose(actual, expected)
 
-    def test_two_layers_output_values(
-        self, first_layer: LayerDense, second_layer: LayerDense, inputs: np.ndarray
-    ):
+    def test_two_layers_output_values(self, first_layer: LayerDense, second_layer: LayerDense, inputs: np.ndarray):
         """Test two layers output values."""
         np.random.seed(0)
 
