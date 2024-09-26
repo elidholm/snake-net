@@ -22,14 +22,14 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pylint pytest mypy numpy rich
+          pip install pylint pytest mypy numpy rich logging
       - name: Lint with pylint
         run: |
           pylint $(git ls-files '*.py')
       - name: Test with pytest
         if: '!cancelled()'
         run: |
-          pytest $(git ls-files 'tests/*.py')
+          pytest $(git ls-files 'tests/test_*.py')
       - name: Type check with mypy
         if: '!cancelled()'
         run: |

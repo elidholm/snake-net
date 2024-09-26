@@ -1,7 +1,12 @@
 """Snake-Net Project."""
 
+import logging
+
 import numpy as np
-import rich
+from rich.logging import RichHandler
+
+logging.basicConfig(level=logging.DEBUG, format="%(message)s", datefmt="%Y-%m-%d %H:%M:%S", handlers=[RichHandler()])
+_log = logging.getLogger(__name__)
 
 
 class LayerDense:
@@ -23,15 +28,15 @@ class LayerDense:
 def main():
     """Main function."""
     inputs = np.array([[1, 2, 3, 2.5], [2.0, 5.0, -1.0, 2.0], [-1.5, 2.7, 3.3, -0.8]])
-    rich.print(f"Inputs:\n{inputs}")
+    _log.info("Inputs:\n%s", inputs)
 
     layer1 = LayerDense(4, 5)
     layer2 = LayerDense(5, 2)
 
     layer1.forward(inputs)
-    rich.print(f"\nOutput after first layer:\n{layer1.output}")
+    _log.info("Output after first layer:\n%s", layer1.output)
     layer2.forward(layer1.output)
-    rich.print(f"\nOutput after second layer:\n{layer2.output}")
+    _log.info("Output after second layer:\n%s", layer2.output)
 
 
 if __name__ == "__main__":

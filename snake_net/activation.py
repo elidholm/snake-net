@@ -1,7 +1,12 @@
 """Activation functions for neural networks."""
 
+import logging
+
 import numpy as np
-import rich
+from rich.logging import RichHandler
+
+logging.basicConfig(level=logging.DEBUG, format="%(message)s", datefmt="%Y-%m-%d %H:%M:%S", handlers=[RichHandler()])
+_log = logging.getLogger(__name__)
 
 
 class ActivationReLU:
@@ -23,8 +28,12 @@ class ActivationReLU:
 
 def main():
     """Main function."""
-    inputs = np.array([[-1, 2, -3, 4]])
-    rich.print(f"Inputs:\n{inputs}")
+    inputs = np.array([-1, 2, -3, 4])
+    logging.info("Inputs:\n%s", inputs)
+
+    activation = ActivationReLU()
+    activation.forward(inputs)
+    _log.info("Outputs after ReLU activation function:\n%s", activation.outputs)
 
 
 if __name__ == "__main__":
