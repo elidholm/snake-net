@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pylint pytest mypy numpy rich logging
+          pip install pylint pytest mypy numpy rich logging matplotlib functools
       - name: Lint with pylint
         run: |
           pylint $(git ls-files '*.py')
