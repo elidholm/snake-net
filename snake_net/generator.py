@@ -13,7 +13,7 @@ _log = logging.getLogger(__name__)
 
 class Generator:
     @lru_cache(maxsize=128)
-    def create_data(self, n_points: int, n_classes: int):
+    def spiral_data(self, n_points: int, n_classes: int):
         points = np.zeros((n_points * n_classes, 2))
         labels = np.zeros(n_points * n_classes, dtype="uint8")
         for class_number in range(n_classes):
@@ -31,7 +31,7 @@ def main():
     _log.info("Number of classes: %d", n_classes)
 
     data_generator = Generator()
-    points, labels = data_generator.create_data(n_points, n_classes)
+    points, labels = data_generator.spiral_data(n_points, n_classes)
     _log.debug("Generated points:\n%s", points)
     _log.debug("Labels:\n%s", labels)
 
