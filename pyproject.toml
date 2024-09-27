@@ -23,6 +23,7 @@ disable = [
   "missing-function-docstring",
   "duplicate-code",
   "too-few-public-methods",
+  "possibly-used-before-assignment",
 ]
 
 [tool.pylint.'FORMAT']

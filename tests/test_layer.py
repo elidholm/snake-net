@@ -21,31 +21,31 @@ class TestLayerDense:
         inputs = np.array([[1, 2, 3, 2.5], [2.0, 5.0, -1.0, 2.0], [-1.5, 2.7, 3.3, -0.8]])
         return inputs
 
-    def test_one_layer_output_shape(self, first_layer: LayerDense, inputs: np.ndarray):
-        """Test one layer output shape."""
+    def test_one_layer_outputs_shape(self, first_layer: LayerDense, inputs: np.ndarray):
+        """Test one layer outputs shape."""
         np.random.seed(0)
 
         first_layer.forward(inputs)
-        actual = first_layer.output.shape
+        actual = first_layer.outputs.shape
         expected = (3, 5)
         assert actual == expected
 
-    def test_two_layers_output_shape(self, first_layer: LayerDense, second_layer: LayerDense, inputs: np.ndarray):
-        """Test two layers output shape"""
+    def test_two_layers_outputs_shape(self, first_layer: LayerDense, second_layer: LayerDense, inputs: np.ndarray):
+        """Test two layers outputs shape"""
         np.random.seed(0)
 
         first_layer.forward(inputs)
-        second_layer.forward(first_layer.output)
-        actual = second_layer.output.shape
+        second_layer.forward(first_layer.outputs)
+        actual = second_layer.outputs.shape
         expected = (3, 2)
         assert actual == expected
 
-    def test_one_layer_output_values(self, first_layer: LayerDense, inputs: np.ndarray):
-        """Test one layer output values."""
+    def test_one_layer_outputs_values(self, first_layer: LayerDense, inputs: np.ndarray):
+        """Test one layer outputs values."""
         np.random.seed(0)
 
         first_layer.forward(inputs)
-        actual = first_layer.output
+        actual = first_layer.outputs
         expected = np.array(
             [
                 [0.10758131, 1.03983522, 0.24462411, 0.31821498, 0.18851053],
@@ -55,13 +55,13 @@ class TestLayerDense:
         )
         assert np.allclose(actual, expected)
 
-    def test_two_layers_output_values(self, first_layer: LayerDense, second_layer: LayerDense, inputs: np.ndarray):
-        """Test two layers output values."""
+    def test_two_layers_outputs_values(self, first_layer: LayerDense, second_layer: LayerDense, inputs: np.ndarray):
+        """Test two layers outputs values."""
         np.random.seed(0)
 
         first_layer.forward(inputs)
-        second_layer.forward(first_layer.output)
-        actual = second_layer.output
+        second_layer.forward(first_layer.outputs)
+        actual = second_layer.outputs
         print(actual)
         expected = np.array(
             [

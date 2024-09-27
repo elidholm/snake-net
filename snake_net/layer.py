@@ -5,7 +5,7 @@ import logging
 import numpy as np
 from rich.logging import RichHandler
 
-logging.basicConfig(level=logging.DEBUG, format="%(message)s", datefmt="%Y-%m-%d %H:%M:%S", handlers=[RichHandler()])
+logging.basicConfig(level=logging.INFO, format="%(message)s", datefmt="%Y-%m-%d %H:%M:%S", handlers=[RichHandler()])
 _log = logging.getLogger(__name__)
 
 
@@ -15,14 +15,14 @@ class LayerDense:
     def __init__(self, n_inputs: int, n_neurons: int):
         self.weights = 0.10 * np.random.randn(n_inputs, n_neurons)
         self.biases = np.zeros((1, n_neurons))
-        self.output = np.zeros((1, n_neurons))
+        self.outputs = np.zeros((1, n_neurons))
 
     def forward(self, inputs: np.ndarray) -> None:
         """Forward propagation
         Args:
             inputs (np.ndarray): Input data
         """
-        self.output = np.dot(inputs, self.weights) + self.biases
+        self.outputs = np.dot(inputs, self.weights) + self.biases
 
 
 def main():
@@ -34,9 +34,9 @@ def main():
     layer2 = LayerDense(5, 2)
 
     layer1.forward(inputs)
-    _log.info("Output after first layer:\n%s", layer1.output)
-    layer2.forward(layer1.output)
-    _log.info("Output after second layer:\n%s", layer2.output)
+    _log.info("Output after first layer:\n%s", layer1.outputs)
+    layer2.forward(layer1.outputs)
+    _log.info("Output after second layer:\n%s", layer2.outputs)
 
 
 if __name__ == "__main__":

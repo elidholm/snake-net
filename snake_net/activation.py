@@ -5,7 +5,7 @@ import logging
 import numpy as np
 from rich.logging import RichHandler
 
-logging.basicConfig(level=logging.DEBUG, format="%(message)s", datefmt="%Y-%m-%d %H:%M:%S", handlers=[RichHandler()])
+logging.basicConfig(level=logging.INFO, format="%(message)s", datefmt="%Y-%m-%d %H:%M:%S", handlers=[RichHandler()])
 _log = logging.getLogger(__name__)
 
 
