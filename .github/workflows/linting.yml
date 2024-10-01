@@ -27,6 +27,7 @@ jobs:
         run: |
           pylint $(git ls-files '*.py')
       - name: Lint with flake8
+        if: '!cancelled()'
         run: |
           flake8 $(git ls-files '*.py')
       - name: Test with pytest
