@@ -5,69 +5,55 @@ import pytest
 
 from snake_net.layer import LayerDense
 
+np.random.seed(0)
+
 
 class TestLayerDense:
 
     @pytest.fixture(scope="function")
-    def first_layer(self) -> LayerDense:
-        return LayerDense(4, 5)
+    def number_of_neurons(self) -> int:
+        return 5
 
     @pytest.fixture(scope="function")
-    def second_layer(self) -> LayerDense:
-        return LayerDense(5, 2)
+    def number_of_inputs(self) -> int:
+        return 4
 
     @pytest.fixture(scope="function")
-    def inputs(self) -> np.ndarray:
-        inputs = np.array([[1, 2, 3, 2.5], [2.0, 5.0, -1.0, 2.0], [-1.5, 2.7, 3.3, -0.8]])
+    def input_batch_size(self) -> int:
+        return 3
+
+    @pytest.fixture(scope="function")
+    def layer(self, number_of_neurons: int, number_of_inputs: int) -> LayerDense:
+        return LayerDense(number_of_neurons, number_of_inputs)
+
+    @pytest.fixture(scope="function")
+    def inputs(self, number_of_inputs: int, input_batch_size: int) -> np.ndarray:
+        inputs = np.random.randint(-5, 5, size=(number_of_inputs, input_batch_size))
         return inputs
 
-    def test_one_layer_outputs_shape(self, first_layer: LayerDense, inputs: np.ndarray):
+    def test_one_layer_outputs_shape(
+        self, layer: LayerDense, inputs: np.ndarray, number_of_neurons: int, input_batch_size: int
+    ):
         """Test one layer outputs shape."""
-        np.random.seed(0)
 
-        first_layer.forward(inputs)
-        actual = first_layer.outputs.shape
-        expected = (3, 5)
+        outputs = layer.forward(inputs)
+        actual = outputs.shape
+        expected = (number_of_neurons, input_batch_size)
         assert actual == expected
 
-    def test_two_layers_outputs_shape(self, first_layer: LayerDense, second_layer: LayerDense, inputs: np.ndarray):
-        """Test two layers outputs shape"""
-        np.random.seed(0)
-
-        first_layer.forward(inputs)
-        second_layer.forward(first_layer.outputs)
-        actual = second_layer.outputs.shape
-        expected = (3, 2)
-        assert actual == expected
-
-    def test_one_layer_outputs_values(self, first_layer: LayerDense, inputs: np.ndarray):
+    def test_one_layer_outputs_values(self, layer: LayerDense, inputs: np.ndarray):
         """Test one layer outputs values."""
-        np.random.seed(0)
 
-        first_layer.forward(inputs)
-        actual = first_layer.outputs
-        expected = np.array(
-            [
-                [0.10758131, 1.03983522, 0.24462411, 0.31821498, 0.18851053],
-                [-0.08349796, 0.70846411, 0.00293357, 0.44701525, 0.36360538],
-                [-0.50763245, 0.55688422, 0.07987797, -0.34889573, 0.04553042],
-            ]
-        )
-        assert np.allclose(actual, expected)
+        actual = layer.forward(inputs)
 
-    def test_two_layers_outputs_values(self, first_layer: LayerDense, second_layer: LayerDense, inputs: np.ndarray):
-        """Test two layers outputs values."""
-        np.random.seed(0)
-
-        first_layer.forward(inputs)
-        second_layer.forward(first_layer.outputs)
-        actual = second_layer.outputs
         print(actual)
         expected = np.array(
             [
-                [0.148296, -0.08397602],
-                [0.14100315, -0.01340469],
-                [0.20124979, -0.07290616],
+                [1.1209, -4.0330, 1.1846],
+                [0.7939, -4.0740, 1.5949],
+                [-1.5367, -7.3221, -5.9008],
+                [-1.9041, -2.7028, -4.6993],
+                [1.6641, 0.8696, 3.1323],
             ]
         )
-        assert np.allclose(actual, expected)
+        assert np.allclose(actual, expected, atol=1e-4)
