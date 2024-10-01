@@ -28,36 +28,26 @@ class TestActivationReLU:
     def mixed_array(self) -> np.ndarray:
         return np.array([-1, 2, -3, 4])
 
-    def test_initial_outputs_should_be_empty(self, relu: ActivationReLU, empty_array: np.ndarray):
-        """Check that outputs are initiated to empty array."""
-        actual = relu.outputs
-        expected = empty_array
-        assert np.array_equal(actual, expected)
-
     def test_output_of_empty_input_should_be_empty(self, relu: ActivationReLU, empty_array: np.ndarray):
         """Check that output is empty if input is empty."""
-        relu.forward(empty_array)
-        actual = relu.outputs
+        actual = relu.forward(empty_array)
         expected = empty_array
         assert np.array_equal(actual, expected)
 
     def test_output_of_positive_input_should_be_itself(self, relu: ActivationReLU, positive_array: np.ndarray):
         """Check that output is itself if input is positive."""
-        relu.forward(positive_array)
-        actual = relu.outputs
+        actual = relu.forward(positive_array)
         expected = positive_array
         assert np.array_equal(actual, expected)
 
     def test_output_of_negative_input_should_be_zeros(self, relu: ActivationReLU, negative_array: np.ndarray):
         """Check that output is zeros if input is negative."""
-        relu.forward(negative_array)
-        actual = relu.outputs
+        actual = relu.forward(negative_array)
         expected = np.array([0, 0, 0, 0])
         assert np.array_equal(actual, expected)
 
     def test_output_of_mixed_input_should_be_correct(self, relu: ActivationReLU, mixed_array: np.ndarray):
         """Check that output is correct if input is mixed."""
-        relu.forward(mixed_array)
-        actual = relu.outputs
+        actual = relu.forward(mixed_array)
         expected = np.array([0, 2, 0, 4])
         assert np.array_equal(actual, expected)
