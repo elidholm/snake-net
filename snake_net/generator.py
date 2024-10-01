@@ -3,7 +3,7 @@
 import logging
 from functools import lru_cache
 
-import matplotlib.pyplot as plt  # type: ignore
+import matplotlib.pyplot as plt
 import numpy as np
 from rich.logging import RichHandler
 
