@@ -1,0 +1,13 @@
+[flake8]
+max-line-length = 119
+import-order-style = pep8
+application-import-names = snake_net
+extend-ignore =
+    # E203 is not compliant with Black:
+    # <https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#slices>
+    E203,
+    # "G200 Logging statement uses exception in arguments" -- comes from
+    # `flake8-logging-format`, and I don't really get what it complains about
+    # -- using an exception object to get the string representation (rather
+    # than the entire traceback) seems fine?
+    G200,
